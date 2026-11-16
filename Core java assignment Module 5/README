@@ -1,0 +1,42 @@
+# FeedbackApp
+
+## About the Project
+
+FeedbackApp is a simple Java Servlet application
+created to collect feedback from users.
+
+Users can enter their name and email, select a
+feedback type, and write their comments.
+
+After submitting the form, the application displays
+the entered details along with a thank-you message
+and the current date and time.
+
+## Technologies Used
+- HTML
+- Java
+- Java Servlet
+- XML
+- Apache Tomcat
+
+## How to Run
+1. Open the project in Eclipse IDE.
+2. Configure Apache Tomcat 9.
+3. Add FeedbackApp to the Tomcat server.
+4. Start the server.
+5. Open the browser and visit:
+
+   http://localhost:8080/FeedbackApp/feedback.html
+
+6. Fill in the feedback form and click Submit Feedback.
+
+## Project Files
+- feedback.html
+- FeedbackServlet.java
+- web.xml
+
+## Conclusion
+
+Through this project, I learned how to create an
+HTML form, connect it to a Java Servlet, and display
+the submitted information using a web application.

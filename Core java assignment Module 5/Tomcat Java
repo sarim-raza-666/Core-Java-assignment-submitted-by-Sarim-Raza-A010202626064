@@ -1,0 +1,68 @@
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class FeedbackServlet extends HttpServlet {
+
+    protected void doPost(HttpServletRequest request,
+                          HttpServletResponse response)
+            throws ServletException, IOException {
+
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String feedbackType = request.getParameter("feedbackType");
+        String comments = request.getParameter("comments");
+
+        LocalDateTime currentTime = LocalDateTime.now();
+
+        DateTimeFormatter formatter =
+                DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
+        String dateTime = currentTime.format(formatter);
+
+        PrintWriter out = response.getWriter();
+
+        out.println("<html>");
+        out.println("<head><title>Feedback Response</title></head>");
+        out.println("<body>");
+
+        out.println("<h2>Thank you, " + escapeHTML(name)
+                + " for your feedback!</h2>");
+
+        out.println("<p><b>Email:</b> " + escapeHTML(email) + "</p>");
+        out.println("<p><b>Feedback Type:</b> "
+                + escapeHTML(feedbackType) + "</p>");
+
+        out.println("<p><b>Your Comments:</b> "
+                + escapeHTML(comments) + "</p>");
+
+        out.println("<p><b>Submitted on:</b> "
+                + dateTime + "</p>");
+
+        out.println("<br><a href='feedback.html'>Go Back</a>");
+
+        out.println("</body>");
+        out.println("</html>");
+    }
+
+    private String escapeHTML(String text) {
+        if (text == null) {
+            return "";
+        }
+
+        return text.replace("&", "&amp;")
+                   .replace("<", "&lt;")
+                   .replace(">", "&gt;")
+                   .replace("\"", "&quot;")
+                   .replace("'", "&#39;");
+    }
+}
